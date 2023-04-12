@@ -1,0 +1,43 @@
+add_action('init','create_post_type_reviews');
+
+
+function create_post_type_portfolio(){
+	
+    register_post_type('portfolio',array(
+        
+        'public'		    =>true,
+        'labels'		    =>array(
+            'name'		    =>'Portfolio',
+            'singular_name' => 'portfolio',
+            'add_new'	    =>'Add New portfolio',
+            'add_items'	    =>'All Servicportfolioe',
+            'add_new_item'	=>'Add New portfolio',
+            'not_found' => 'No Products found',
+            'not_found_in_trash' => 'No Products found in Trash'
+            ),
+        'menu_icon'		=> 'dashicons-star-empty',
+        'supports'		=>array('title','custom-fields'),
+    
+        ));
+    
+    }
+add_action('init','create_post_type_portfolio');
+
+
+
+function register_custom_portfolio_taxonomies()
+{
+    register_taxonomy( 'portfolio-category', 'portfolio', array(
+	"hierarchical" => true,
+	"label" => "Portfolio Category",
+	"singular_label" => "Portfolio Category",
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'portfolio-category', 'portfolio-category' => false ),
+	'public' => true,
+	'show_ui' => true,
+	'show_tagcloud' => true,
+	'_builtin' => false,
+	'show_in_nav_menus' => false
+    ));
+}
+add_action( 'init', 'register_custom_portfolio_taxonomies', 0 );
